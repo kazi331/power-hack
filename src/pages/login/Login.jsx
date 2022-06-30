@@ -29,8 +29,7 @@ const Login = () => {
   if (error) {
     if (error.message.includes('auth/wrong-password')) {
       error.message = 'Invalid credentials'
-    }
-    if (error.message.includes('auth/user-not-found')) {
+    }else if (error.message.includes('auth/user-not-found')) {
       error.message = 'User Not Found!'
     }
     toast.error(error.message);
@@ -118,9 +117,7 @@ const Login = () => {
                   autoComplete="off"
 
                 />
-                <span className="eye" onClick={() => {
-                  setShowPass(!showPass);
-                }}>
+                <span className="eye" onClick={() => setShowPass(!showPass)}>
                   {showPass ? eyeOff : eyeOn}
                 </span>
               </div>

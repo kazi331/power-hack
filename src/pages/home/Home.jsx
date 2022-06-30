@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import AddBillModal from '../../components/AddBillModal';
 import DeleteModal from '../../components/DeleteModal';
 function Home() {
 
   const bills = useSelector(state => state.billSlice.bills)
-  const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [addBillModal, setAddBillModal] = useState(false);
   const handleEdit = () => {
     console.log('edit')
   }
   const handleDelete = () => {
     console.log('Deleted')
-    setModal(false)
+    setDeleteModal(false)
   }
   const handleAddBill = () => {
-    console.log('add')
+    setAddBillModal(true);
   }
   return (
     <>
@@ -55,14 +57,15 @@ function Home() {
                 <td className="border-b border-slate-600 p-2 pl-8 ">{amount}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 flex gap-1 ">
                   <button onClick={handleEdit} className="flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">Edit</button>
-                  <button onClick={() => setModal(true)} className="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delete</button>
+                  <button onClick={() => setDeleteModal(true)} className="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delete</button>
                 </td>
               </tr>)
             })}
           </tbody>
         </table>
         {/* modals  */}
-      {modal && <DeleteModal setModal={setModal} handleDelete={handleDelete} />}
+      {deleteModal && <DeleteModal setDeleteModal={setDeleteModal} handleDelete={handleDelete} />}
+      {addBillModal && <AddBillModal setAddBillModal={setAddBillModal} handleAddBill={handleAddBill} />}
       </div>
     </>
   )

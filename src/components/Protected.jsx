@@ -8,7 +8,6 @@ function Protected({ children }) {
   if (loading) return 'loading...'
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
-    // return navigate('/login', { replace: true })
   }
   return children;
 }
