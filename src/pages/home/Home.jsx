@@ -22,7 +22,7 @@ function Home() {
         <div className=" flex gap-x-3 min-w-max  justify-between items-center">
           <form className="flex  gap-2">
             <label htmlFor="billing" className="leading-7 text-sm">Billing</label>
-            <input type="text" id="billing" placeholder='Search item' className="w-full bg-gray-700  rounded border border-gray-700 focus:border-indigo-300 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3" />
+            <input type="text" id="billing" placeholder='Search item' className="w-full bg-gray-700  rounded border border-gray-700 focus:border-indigo-300  text-base outline-none text-gray-100 py-1 px-3" />
             <button className="md:hidden flex text-white bg-blue-500 border-0 py-1 px-4 focus:outline-none hover:bg-blue-600 rounded">Search</button>
           </form>
           <div>

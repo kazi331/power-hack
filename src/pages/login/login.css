@@ -1,0 +1,9 @@
+
+.eye {
+  position: absolute;
+  margin-left: -40px;
+  margin-top: .2rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
