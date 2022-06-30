@@ -39,6 +39,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:18.2.0"],\
             ["react-scripts", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:5.0.1"],\
+            ["sweetalert2", "npm:11.4.19"],\
+            ["sweetalert2-react-content", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:5.0.1"],\
             ["tailwindcss", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:3.1.4"],\
             ["uuid", "npm:8.3.2"],\
             ["web-vitals", "npm:2.1.4"]\
@@ -13834,6 +13836,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:18.2.0"],\
             ["react-scripts", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:5.0.1"],\
+            ["sweetalert2", "npm:11.4.19"],\
+            ["sweetalert2-react-content", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:5.0.1"],\
             ["tailwindcss", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:3.1.4"],\
             ["uuid", "npm:8.3.2"],\
             ["web-vitals", "npm:2.1.4"]\
@@ -15575,6 +15579,45 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["csso", "npm:4.2.0"],\
             ["picocolors", "npm:1.0.0"],\
             ["stable", "npm:0.1.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["sweetalert2", [\
+        ["npm:11.4.19", {\
+          "packageLocation": "./.yarn/cache/sweetalert2-npm-11.4.19-9ad3af9377-4bdc1f967f.zip/node_modules/sweetalert2/",\
+          "packageDependencies": [\
+            ["sweetalert2", "npm:11.4.19"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["sweetalert2-react-content", [\
+        ["npm:5.0.1", {\
+          "packageLocation": "./.yarn/cache/sweetalert2-react-content-npm-5.0.1-b036f24e5e-5d27f75452.zip/node_modules/sweetalert2-react-content/",\
+          "packageDependencies": [\
+            ["sweetalert2-react-content", "npm:5.0.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:5.0.1", {\
+          "packageLocation": "./.yarn/__virtual__/sweetalert2-react-content-virtual-84486635a3/0/cache/sweetalert2-react-content-npm-5.0.1-b036f24e5e-5d27f75452.zip/node_modules/sweetalert2-react-content/",\
+          "packageDependencies": [\
+            ["sweetalert2-react-content", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:5.0.1"],\
+            ["@types/react", null],\
+            ["@types/react-dom", null],\
+            ["@types/sweetalert2", null],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:6e2305ecb4b7c0b9e89d5d760c74fff0d9859a407bbc82c037c316d379049da6be16c9f3f61fa4f32fdb0fb53d266f0d111b55407c3df30ee3dc7dfffde10dc0#npm:18.2.0"],\
+            ["sweetalert2", "npm:11.4.19"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "@types/sweetalert2",\
+            "react-dom",\
+            "react",\
+            "sweetalert2"\
           ],\
           "linkType": "HARD"\
         }]\
