@@ -11,6 +11,9 @@ import {
 import DeleteModal from '../../components/DeleteModal';
 import AddBillModal from '../../components/AddBillModal'
 import EditBillModal from '../../components/EditBillModal';
+import { useDispatch } from 'react-redux';
+import { setBills } from '../../features/billSlice';
+
 
 function Home() {
   // const bills = useSelector(state => state.billSlice.bills)
@@ -18,9 +21,15 @@ function Home() {
   const [addBillModal, setAddBillModal] = useState(false);
   const [editBillModal, setEditBillModal] = useState(false);
   const { isLoading, isError, data: bills, error, refetch } = useQuery('bills', () => axios.get("https://ph-power-hack.herokuapp.com/api/billing-list"))
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if(isLoading) return 
+    dispatch(setBills(bills.data))
+  }, [bills, dispatch, isLoading]);
   if (isLoading) return 'loading...'
-  const handleEdit = () => {
-  }
+
+  
+
   return (
     <>
       {/* search bar  */}
@@ -61,15 +70,15 @@ function Home() {
                 <td className="border-b border-slate-600 p-2 pl-8 ">{phone}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 ">{amount}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 flex gap-1 ">
-                  <button onClick={() => setEditBillModal(true)} className="flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">Edit</button>
-                {editBillModal && <EditBillModal setEditBillModal={setEditBillModal} id={_id} handleEdit={handleEdit} bill={bill} />}
-                  <button onClick={() => setDeleteModal(true)} className="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delete</button>
-                  {deleteModal && <DeleteModal setDeleteModal={setDeleteModal} refetch={refetch} id={_id} />}
+                  <button onClick={() => setEditBillModal(bill)} className="flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">Edit</button>
+                  <button onClick={() => setDeleteModal(_id)} className="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delete</button>
                 </td>
               </tr>)
             })}
           </tbody>
         </table>
+        {editBillModal && <EditBillModal setEditBillModal={setEditBillModal} id={editBillModal._id} bill={editBillModal} refetch={refetch} />}
+        {deleteModal && <DeleteModal setDeleteModal={setDeleteModal} refetch={refetch} id={deleteModal} />}
         {addBillModal && <AddBillModal setAddBillModal={setAddBillModal} refetch={refetch} />}
       </div>
     </>

@@ -1,11 +1,13 @@
+import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import auth from "../firebase.init";
-import { signOut } from 'firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Navbar() {
   const [user, loading, error] = useAuthState(auth);
-  const total = 200;
+  const bills = useSelector(state => state.billSlice.bills)
+  const total = bills.reduce((a, b) => a + Number(b.amount), 0);
   return (
     <header className="text-gray-400 bg-gray-900 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">

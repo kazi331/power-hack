@@ -4,13 +4,28 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 
-function EditBillModal({ setEditBillModal, handleEdit, bill }) {
-    const { name, email, phone, amount } = bill;
-    console.log('Edit billing')
+function EditBillModal({ setEditBillModal, handleEdit, bill, refetch }) {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => {
+    const { _id, name, email, phone, amount } = bill;
+    const onSubmit = data => {
         console.log(data);
-    };
+        const url = `https://ph-power-hack.herokuapp.com/api/update-billing/${_id}`;
+        axios.patch(url, JSON.stringify(data), {
+            headers: {
+                'Content-Type': 'application/json',
+                method: 'PATCH'
+            }
+        })
+            .then(res => {
+                if(res.data.modifiedCount){
+                    setEditBillModal(false);
+                    refetch();
+                    toast.info('Item updated');
+                }
+            });
+    }
+
+    console.log('Edit billing')
     const loading = false;
     return (
         <div className='flex bg-gray-800 bg-opacity-60 backdrop-blur p-20 text-white  items-center justify-center h-screen  w-screen absolute top-0 left-0'>
@@ -86,13 +101,13 @@ function EditBillModal({ setEditBillModal, handleEdit, bill }) {
                                 />
                             </div>
 
-                            <button onClick={() => setEditBillModal(false)} className="bg-gray-500 border-0 focus:outline-none hover:bg-gray-800 rounded px-5 py-2.5 my-4">
+                            <button className="bg-gray-500 border-0 focus:outline-none hover:bg-gray-800 rounded px-5 py-2.5 my-4">
                                 {loading && spinnerIcon} Edit Bill
                             </button>
                         </form>
 
                         <div className="flex justify-end w-full">
-                            <button onClick={() => setEditBillModal(false)} type="button" className="text-gray-500 bg-white hover:bg-gray-100  focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                            <button onClick={() => setEditBillModal(false)} type="button" className="text-gray-500 bg-white hover:bg-gray-100  focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">Cancel</button>
                         </div>
                     </div>
                 </div>
