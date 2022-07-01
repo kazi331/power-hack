@@ -1,12 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AddBillModal from '../../components/AddBillModal';
 import DeleteModal from '../../components/DeleteModal';
-function Home() {
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
 
-  const bills = useSelector(state => state.billSlice.bills)
+function Home() {
+  // const bills = useSelector(state => state.billSlice.bills)
   const [deleteModal, setDeleteModal] = useState(false);
   const [addBillModal, setAddBillModal] = useState(false);
+  const [bills, setBills] = useState([])
+  useEffect(()=> {
+    axios.get('http://localhost:5000/api/billing-list')
+    .then(res => setBills(res.data))
+
+  }, [bills])
   const handleEdit = () => {
     console.log('edit')
   }
@@ -48,9 +56,9 @@ function Home() {
           </thead>
           <tbody className="bg-slate-700 text-slate-300 text-left ">
             {bills && bills.map(bill => {
-              const { id, name, email, phone, amount } = bill;
-              return (<tr key={id}>
-                <td className="border-b border-slate-600 p-2 pl-8 ">{id.slice(0, 6)}</td>
+              const { _id, name, email, phone, amount } = bill;
+              return (<tr key={_id}>
+                <td className="border-b border-slate-600 p-2 pl-8 ">{_id.slice(0, 6)}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 ">{name}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 ">{email}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 ">{phone}</td>

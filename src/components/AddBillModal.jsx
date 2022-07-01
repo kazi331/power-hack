@@ -1,15 +1,26 @@
 import { useForm } from "react-hook-form";
 import { closeIcon, spinnerIcon } from "./icons";
+import axios from 'axios'
+import {toast} from 'react-toastify'
 
 
 function AddBillModal({ setAddBillModal, handleAddBill }) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    console.log(data)
+    axios.post('http://localhost:5000/api/add-billing', data)
+    .then(res => {
+      if(res.data.insertedId){
+        toast.success('Bill Added Succesfully');
+        setAddBillModal(false);
+      }
+    })
+  };
   const loading = false;
   return (
-    <div className='flex bg-gray-800 bg-opacity-40 backdrop-blur-sm p-20 text-white  items-center justify-center h-screen  w-screen absolute top-0 left-0'>
-      <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-        <div className="relative bg-gray-700 rounded-lg shadow dark:bg-gray-70 overflow-y-auto max-h-96">
+    <div className='flex bg-gray-800 bg-opacity-60 backdrop-blur p-20 text-white  items-center justify-center h-screen  w-screen absolute top-0 left-0'>
+      <div className="relative p-4 w-full max-w-md min-w-max h-full md:h-auto">
+        <div className="relative bg-gray-700 rounded-lg shadow dark:bg-gray-70 overflow-y-auto max-h-[90vh]">
           <button onClick={() => setAddBillModal(false)} type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="popup-modal">{closeIcon} </button>
           <div className="p-6 text-center  ">
             <h3 className="mb-5 text-lg font-normal">Add New Bill</h3>
