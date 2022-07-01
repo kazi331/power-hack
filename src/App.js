@@ -6,6 +6,7 @@ import Protected from './components/Protected';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import Test from './pages/Test';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Protected> <Home /> </Protected>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/test" element={<Test/>} />
       </Routes>
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>

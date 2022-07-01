@@ -6,15 +6,19 @@ import App from './App';
 import { store } from './app/store';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    {/* <Provider store={store}> */}
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </QueryClientProvider>
+    {/* </Provider> */}
   </React.StrictMode>
 );
 

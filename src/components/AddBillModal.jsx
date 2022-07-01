@@ -4,7 +4,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 
 
-function AddBillModal({ setAddBillModal, handleAddBill }) {
+function AddBillModal({ setAddBillModal, refetch }) {
   console.log('add billing')
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => {
@@ -14,6 +14,7 @@ function AddBillModal({ setAddBillModal, handleAddBill }) {
       if(res.data.insertedId){
         toast.success('Bill Added Succesfully');
         setAddBillModal(false);
+        refetch();
       }
     })
   };
@@ -92,13 +93,13 @@ function AddBillModal({ setAddBillModal, handleAddBill }) {
                 />
               </div>
 
-              <button onClick={handleAddBill} className="bg-gray-500 border-0 focus:outline-none hover:bg-gray-800 rounded px-5 py-2.5 my-4">
+              <button className="bg-gray-500 border-0 focus:outline-none hover:bg-gray-800 rounded px-5 py-2.5 my-4">
                 {loading && spinnerIcon} Add Bill
               </button>
             </form>
 
             <div className="flex justify-end w-full">
-              <button onClick={() => setAddBillModal(false)} type="button" className="text-gray-500 bg-white hover:bg-gray-100  focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+              <button onClick={() => setAddBillModal(false)} type="button" className="text-gray-500 bg-white hover:bg-gray-100  focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
             </div>
           </div>
         </div>
@@ -107,4 +108,4 @@ function AddBillModal({ setAddBillModal, handleAddBill }) {
   )
 }
 
-export default AddBillModal
+export default AddBillModal;
