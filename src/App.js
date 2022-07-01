@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      <ToastContainer />
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }

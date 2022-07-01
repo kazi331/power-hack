@@ -4,6 +4,7 @@ import AddBillModal from '../../components/AddBillModal';
 import DeleteModal from '../../components/DeleteModal';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
+import {toast} from 'react-toastify'
 
 function Home() {
   // const bills = useSelector(state => state.billSlice.bills)
@@ -11,20 +12,31 @@ function Home() {
   const [addBillModal, setAddBillModal] = useState(false);
   const [bills, setBills] = useState([])
   useEffect(()=> {
-    axios.get('http://localhost:5000/api/billing-list')
+    axios.get('https://ph-power-hack.herokuapp.com/api/billing-list')
     .then(res => setBills(res.data))
 
   }, [bills])
+
+
   const handleEdit = () => {
     console.log('edit')
   }
-  const handleDelete = () => {
-    console.log('Deleted')
-    setDeleteModal(false)
+  const handleDelete = (id) => {
+    console.log('Deleted');
+    const url = `https://ph-power-hack.herokuapp.com/api/delete-billing/${id}`
+    axios.delete(url)
+    .then(res => {
+      if(res.data.deletedCount){
+        setDeleteModal(false);
+        toast.info('Item Deleted !!')
+      }
+    })
+
   }
   const handleAddBill = () => {
     setAddBillModal(true);
   }
+
   return (
     <>
       {/* search bar  */}
@@ -58,7 +70,7 @@ function Home() {
             {bills && bills.map(bill => {
               const { _id, name, email, phone, amount } = bill;
               return (<tr key={_id}>
-                <td className="border-b border-slate-600 p-2 pl-8 ">{_id.slice(0, 6)}</td>
+                <td className="border-b border-slate-600 p-2 pl-8 ">{_id}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 ">{name}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 ">{email}</td>
                 <td className="border-b border-slate-600 p-2 pl-8 ">{phone}</td>
@@ -66,13 +78,14 @@ function Home() {
                 <td className="border-b border-slate-600 p-2 pl-8 flex gap-1 ">
                   <button onClick={handleEdit} className="flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">Edit</button>
                   <button onClick={() => setDeleteModal(true)} className="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delete</button>
+                  {deleteModal && <DeleteModal setDeleteModal={setDeleteModal} id={_id} handleDelete={handleDelete} />}
                 </td>
               </tr>)
             })}
           </tbody>
         </table>
         {/* modals  */}
-      {deleteModal && <DeleteModal setDeleteModal={setDeleteModal} handleDelete={handleDelete} />}
+
       {addBillModal && <AddBillModal setAddBillModal={setAddBillModal} handleAddBill={handleAddBill} />}
       </div>
     </>

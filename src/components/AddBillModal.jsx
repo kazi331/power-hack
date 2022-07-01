@@ -5,10 +5,11 @@ import {toast} from 'react-toastify'
 
 
 function AddBillModal({ setAddBillModal, handleAddBill }) {
+  console.log('add billing')
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => {
     console.log(data)
-    axios.post('http://localhost:5000/api/add-billing', data)
+    axios.post('https://ph-power-hack.herokuapp.com/api/add-billing', data)
     .then(res => {
       if(res.data.insertedId){
         toast.success('Bill Added Succesfully');
